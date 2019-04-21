@@ -1,0 +1,7 @@
+requests==2.11.1
+Flask==1.0.2
+wtforms==2.2.1
+flask_mail
+pandas==0.23.4
+xlsxwriter
+openpyxl==2.6.0
