@@ -1,0 +1,45 @@
+@import "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 60px; /* bottom has to be the same as footer height */
+}
+footer {
+    /* just for demo */
+    background-color: #F8F8F8;
+    border-top: 1px solid #E7E7E7;
+    text-align:center;
+    padding:20px;
+   /* just for demo */ 
+  
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+    background: grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+
+.box { 
+    border: 2px solid grey; 
+    height: 150px;
+    width: inherit;
+    outline: none;
+    overflow: auto;
+    overflow-x: auto;
+    
+    /* Adding padding messes up the scroll position */
+    padding: 20px;
+}

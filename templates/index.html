@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>JustDial Scraping App</h2>
+  <p>Designed by Aazar</p>
+  <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <label for="url">Input the justdial url of the listing you want to scrape</label>
+      <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL here">
+      <br>
+      <label for="pages">Input the number of pages to scrape (default is one)</label>
+      <input type="text" class="form-control" id="pages" name="pages" placeholder="Pages number here">
+    </div>
+    <p><strong>Sample URL: </strong>https://www.justdial.com/Chennai/Salons/nct-10418299/</p>
+    <button type="submit" class="btn btn-success mb-2">Submit</button>
+  </form>
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-success">
+                  Scraped Successfully!
+                </div>
+                <div class="alert alert-success">
+                  <a href="/download/{{ message[1] }}">Click here to download your file!</a>
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+{% endblock %}

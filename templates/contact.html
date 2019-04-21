@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+ 
+{% block content %}
+  <h2>Contact me!</h2>
+  <br>
+  {% if success %}
+    <p>Thank you for your message. We'll get back to you shortly.</p>
+ 
+  {% else %}
+ 
+    {% for message in form.name.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+ 
+    {% for message in form.email.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+ 
+    {% for message in form.subject.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+ 
+    {% for message in form.message.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+ <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Please enter your name here">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email" placeholder="Please enter your email here">
+      <label for="subject">Subject</label>
+      <input type="text" class="form-control" id="subject" name="subject" placeholder="Please enter subject here">
+      <label for="message">Message</label>
+      <input type="text" class="form-control" id="message" name="message" placeholder="Please enter the message here">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  {% endif %}
+{% endblock %}
