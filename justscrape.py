@@ -14,7 +14,7 @@ headers = {
 	'Upgrade-Insecure-Requests': '1',
 	'DNT': '1',
 	'Content-Type': 'application/x-www-form-urlencoded',
-	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+	'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15',
 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
 	'Accept-Encoding': 'gzip, deflate',
 	'Accept-Language': 'en-US,en;q=0.9',
@@ -44,7 +44,7 @@ def getName(body):
 	return name
 def getPhone(body):
 	try:
-		phone = re.findall(r'<i class="res_contactic resultimg"></i><span><a><b>(.*?)</b></a></span>',body,re.DOTALL)[0]
+		phone = re.findall(r'<i class="res_contactic resultimg"></i><span><a>(.*?)</a></span>',body,re.DOTALL)[0]
 		phone = str(phone)
 		phone = phone.replace('<span class="',"")
 		phone = phone.replace('"></span><span class="',"")
@@ -153,8 +153,9 @@ def scrape(URL,pages):
 		pageNumber += 1
 	header = data[0].keys()
 	t = DataFrame(data)
-	filename = "js"+str(randint(0,2324))+".xlsx"
-	writer = ExcelWriter(filename, engine='xlsxwriter')
-	t.to_excel(writer,'Sheet2', encoding='utf-8', index=False, columns=header)
-	writer.save()
+	filename = "js"+str(randint(0,2324))+".csv"
+	# writer = ExcelWriter(filename, engine='xlsxwriter')
+	# t.to_excel(writer,'Sheet2', encoding='utf-8', index=False, columns=header)
+	# writer.save()
+	t.to_csv(filename,index=False)
 	return filename
